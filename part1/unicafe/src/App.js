@@ -4,6 +4,8 @@ const Header = (props) => {
   return <h1>{props.header}</h1>;
 };
 
+const Button = (props) => <button>{props.text}</button>;
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0);
@@ -13,6 +15,9 @@ const App = () => {
   return (
     <div>
       <Header header="give feedback" />
+      <Button text="good" />
+      <Button text="neutral" />
+      <Button text="bad" />
       <Header header="statistics" />
     </div>
   );
