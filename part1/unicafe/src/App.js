@@ -22,23 +22,34 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
   const [total, setTotal] = useState(0);
+  const [average, setAverage] = useState(0);
+  const [percentage, setPercentage] = useState(0);
 
   const handleGoodClick = () => {
     const updatedGood = good + 1;
     setGood(updatedGood);
-    setTotal(updatedGood + neutral + bad);
+    const updatedTotal = updatedGood + neutral + bad;
+    setTotal(updatedTotal);
+    setAverage((updatedGood * 1 + neutral * 0 + bad * -1) / updatedTotal);
+    setPercentage((updatedGood / updatedTotal) * 100);
   };
 
   const handleNeutralClick = () => {
     const updatedNeutral = neutral + 1;
     setNeutral(updatedNeutral);
-    setTotal(good + updatedNeutral + bad);
+    const updatedTotal = good + updatedNeutral + bad;
+    setTotal(updatedTotal);
+    setAverage((good * 1 + updatedNeutral * 0 + bad * -1) / updatedTotal);
+    setPercentage((good / updatedTotal) * 100);
   };
 
   const handleBadClick = () => {
     const updatedBad = bad + 1;
     setBad(updatedBad);
-    setTotal(good + neutral + updatedBad);
+    const updatedTotal = good + neutral + updatedBad;
+    setTotal(updatedTotal);
+    setAverage((good * 1 + neutral * 0 + updatedBad * -1) / updatedTotal);
+    setPercentage((good / updatedTotal) * 100);
   };
 
   return (
@@ -52,6 +63,8 @@ const App = () => {
       <Display text="neutral " counter={neutral} />
       <Display text="bad " counter={bad} />
       <Display text="all " counter={total} />
+      <Display text="average " counter={average} />
+      <div>positive {percentage}%</div>
     </div>
   );
 };
