@@ -21,20 +21,24 @@ const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const handleGoodClick = () => {
     const updatedGood = good + 1;
     setGood(updatedGood);
+    setTotal(updatedGood + neutral + bad);
   };
 
   const handleNeutralClick = () => {
     const updatedNeutral = neutral + 1;
     setNeutral(updatedNeutral);
+    setTotal(good + updatedNeutral + bad);
   };
 
   const handleBadClick = () => {
     const updatedBad = bad + 1;
     setBad(updatedBad);
+    setTotal(good + neutral + updatedBad);
   };
 
   return (
@@ -47,6 +51,7 @@ const App = () => {
       <Display text="good " counter={good} />
       <Display text="neutral " counter={neutral} />
       <Display text="bad " counter={bad} />
+      <Display text="total " counter={total} />
     </div>
   );
 };
