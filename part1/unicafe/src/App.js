@@ -9,7 +9,12 @@ const Button = (props) => {
 };
 
 const Display = (props) => {
-  return <div>{props.counter}</div>;
+  return (
+    <div>
+      {props.text}
+      {props.counter}
+    </div>
+  );
 };
 
 const App = () => {
@@ -37,6 +42,9 @@ const App = () => {
       <Button handleClick={handleNeutralClick} text="neutral" />
       <Button handleClick={handleBadClick} text="bad" />
       <Header header="statistics" />
+      <Display text="good" counter={good} />
+      <Display text="neutral" counter={neutral} />
+      <Display text="bad" counter={bad} />
     </div>
   );
 };
