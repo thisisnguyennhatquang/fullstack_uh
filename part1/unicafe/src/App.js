@@ -6,7 +6,12 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  return <div>code here</div>;
+  return (
+    <div>
+      <h1>give feedback</h1>
+      <h1>statistics</h1>
+    </div>
+  );
 };
 
 export default App;
