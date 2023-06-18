@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+const Header = (props) => {
+  return <h1>{props.header}</h1>;
+};
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0);
@@ -8,8 +12,8 @@ const App = () => {
 
   return (
     <div>
-      <h1>give feedback</h1>
-      <h1>statistics</h1>
+      <Header header="give feedback" />
+      <Header header="statistics" />
     </div>
   );
 };
