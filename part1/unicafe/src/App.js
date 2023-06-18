@@ -51,7 +51,7 @@ const App = () => {
       <Display text="good " counter={good} />
       <Display text="neutral " counter={neutral} />
       <Display text="bad " counter={bad} />
-      <Display text="total " counter={total} />
+      <Display text="all " counter={total} />
     </div>
   );
 };
