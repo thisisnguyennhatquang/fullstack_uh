@@ -8,11 +8,24 @@ const Button = (props) => {
   return <button onClick={props.handleClick}>{props.text}</button>;
 };
 
-const Display = (props) => {
+const StatisticLine = (props) => {
   return (
     <div>
       {props.text}
-      {props.counter}
+      {props.value}
+    </div>
+  );
+};
+
+const Statistics = (props) => {
+  return (
+    <div>
+      <StatisticLine text="good " value={props.good} />
+      <StatisticLine text="neutral " value={props.neutral} />
+      <StatisticLine text="bad " value={props.bad} />
+      <StatisticLine text="all " value={props.total} />
+      <StatisticLine text="average " value={props.average} />
+      <StatisticLine text="positive " value={props.percentage + " %"} />
     </div>
   );
 };
@@ -59,12 +72,14 @@ const App = () => {
       <Button handleClick={handleNeutralClick} text="neutral" />
       <Button handleClick={handleBadClick} text="bad" />
       <Header header="statistics" />
-      <Display text="good " counter={good} />
-      <Display text="neutral " counter={neutral} />
-      <Display text="bad " counter={bad} />
-      <Display text="all " counter={total} />
-      <Display text="average " counter={average} />
-      <div>positive {percentage}%</div>
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        total={total}
+        average={average}
+        percentage={percentage}
+      />
     </div>
   );
 };
