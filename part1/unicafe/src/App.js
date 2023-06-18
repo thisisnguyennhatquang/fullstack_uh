@@ -4,7 +4,9 @@ const Header = (props) => {
   return <h1>{props.header}</h1>;
 };
 
-const Button = (props) => <button>{props.text}</button>;
+const Button = (props) => {
+  <button onClick={props.handleClick}>{props.text}</button>;
+};
 
 const Display = (props) => {
   return <div>{props.counter}</div>;
@@ -16,12 +18,24 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
+  const handleGoodClick = () => {
+    setGood(good + 1);
+  };
+
+  const handleNeutralClick = () => {
+    setNeutral(neutral + 1);
+  };
+
+  const handleBadClick = () => {
+    setBad(bad + 1);
+  };
+
   return (
     <div>
       <Header header="give feedback" />
-      <Button text="good" />
-      <Button text="neutral" />
-      <Button text="bad" />
+      <Button handleClick={handleGoodClick} text="good" />
+      <Button handleClick={handleNeutralClick} text="neutral" />
+      <Button handleClick={handleBadClick} text="bad" />
       <Header header="statistics" />
     </div>
   );
