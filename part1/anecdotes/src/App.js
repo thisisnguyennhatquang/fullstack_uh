@@ -16,6 +16,8 @@ const App = () => {
     "The only way to go fast, is to go well.",
   ];
 
+  const votes = new Array(anecdotes.length).fill(0);
+
   function randomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -33,12 +35,13 @@ const App = () => {
   };
 
   const handleVoteClick = () => {
-    // code here
+    votes[selected] += 1;
   };
 
   return (
     <div>
       <div>{anecdotes[selected]}</div>
+      <div>has {votes[selected]} votes</div>
       <div>
         <Button handleClick={handleVoteClick} text="vote" />
         <Button handleClick={handleNextClick} text="next anecdote" />
