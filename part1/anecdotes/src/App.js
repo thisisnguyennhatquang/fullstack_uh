@@ -32,10 +32,15 @@ const App = () => {
     setSelected(random);
   };
 
+  const handleVoteClick = () => {
+    // code here
+  };
+
   return (
     <div>
       <div>{anecdotes[selected]}</div>
       <div>
+        <Button handleClick={handleVoteClick} text="vote" />
         <Button handleClick={handleNextClick} text="next anecdote" />
       </div>
     </div>
