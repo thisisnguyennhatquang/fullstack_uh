@@ -16,8 +16,6 @@ const App = () => {
     "The only way to go fast, is to go well.",
   ];
 
-  const votes = new Array(anecdotes.length).fill(0);
-
   function randomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -25,6 +23,8 @@ const App = () => {
   }
 
   const [selected, setSelected] = useState(0);
+
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0));
 
   const handleNextClick = () => {
     let random = randomInt(0, anecdotes.length);
@@ -35,7 +35,9 @@ const App = () => {
   };
 
   const handleVoteClick = () => {
-    votes[selected] += 1;
+    const copy = { ...votes };
+    copy[selected]++;
+    setVotes(copy);
   };
 
   return (
