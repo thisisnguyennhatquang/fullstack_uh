@@ -4,6 +4,10 @@ const Button = (props) => {
   return <button onClick={props.handleClick}>{props.text}</button>;
 };
 
+const Header = (props) => {
+  return <h1>{props.text}</h1>;
+};
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often.",
@@ -16,38 +20,35 @@ const App = () => {
     "The only way to go fast, is to go well.",
   ];
 
-  function randomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-  }
-
   const [selected, setSelected] = useState(0);
 
   const [votes, setVotes] = useState(Array(anecdotes.length).fill(0));
 
   const handleNextClick = () => {
-    let random = randomInt(0, anecdotes.length);
-    while (random === selected) {
-      random = randomInt(0, anecdotes.length);
-    }
+    const random = () => Math.trunc(Math.random() * anecdotes.length);
     setSelected(random);
   };
 
   const handleVoteClick = () => {
-    const copy = { ...votes };
+    const copy = [...votes];
     copy[selected]++;
     setVotes(copy);
   };
 
+  const max = Math.max(...votes);
+
   return (
     <div>
+      <Header text="Anecdote of the day" />
       <div>{anecdotes[selected]}</div>
       <div>has {votes[selected]} votes</div>
       <div>
         <Button handleClick={handleVoteClick} text="vote" />
         <Button handleClick={handleNextClick} text="next anecdote" />
       </div>
+      <Header text="Anecdote with most votes" />
+      <div>{anecdotes[votes.indexOf(max)]}</div>
+      <div>has {max} votes</div>
     </div>
   );
 };
