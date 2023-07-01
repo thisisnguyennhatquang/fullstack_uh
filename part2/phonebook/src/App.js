@@ -64,7 +64,12 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
       <h3>Numbers</h3>
-      <Persons personsToShow={personsToShow} Name={Name} />
+      <Persons
+        personsToShow={personsToShow}
+        Name={Name}
+        persons={persons}
+        setPersons={setPersons}
+      />
     </div>
   );
 };

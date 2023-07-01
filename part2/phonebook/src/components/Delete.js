@@ -1,8 +1,9 @@
 import personsService from "../services/persons";
 
-const Delete = ({ id }) => {
+const Delete = ({ id, persons, setPersons }) => {
   const handleClick = () => {
     personsService.remove(id);
+    setPersons(persons.filter((person) => person.id !== id));
   };
   return (
     <>
