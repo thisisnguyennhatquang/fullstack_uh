@@ -1,4 +1,4 @@
-const Delete = () => {
+const Delete = ({ id }) => {
   return (
     <>
       <button type="submit">delete</button>
