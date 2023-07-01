@@ -2,8 +2,13 @@ import personsService from "../services/persons";
 
 const Delete = ({ id, persons, setPersons }) => {
   const handleClick = () => {
-    personsService.remove(id);
-    setPersons(persons.filter((person) => person.id !== id));
+    const result = window.confirm(
+      `Delete ${persons.find((person) => person.id === id).name}?`
+    );
+    if (result === true) {
+      personsService.remove(id);
+      setPersons(persons.filter((person) => person.id !== id));
+    }
   };
   return (
     <>
