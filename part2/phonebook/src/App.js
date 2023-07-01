@@ -19,7 +19,23 @@ const App = () => {
       id: persons.length + 1,
     };
     if (persons.some((person) => person.name === newName)) {
-      alert(`${newName} is already added to phonebook`);
+      const result = window.confirm(
+        `${newName} is already added to phonebook, replace the old number with a new one?`
+      );
+      if (result === true) {
+        const person = persons.find((person) => person.name === newName);
+        const id = person.id;
+        const changedPerson = { ...person, number: newNumber };
+        personsService.update(id, changedPerson).then((returnedPerson) => {
+          setPersons(
+            persons.map((person) =>
+              person.name !== newName ? person : returnedPerson
+            )
+          );
+        });
+      } else {
+        // do nothing if result === false
+      }
     } else {
       personsService.create(nameObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
