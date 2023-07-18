@@ -4,12 +4,14 @@ import Name from "./components/Name";
 import Persons from "./components/Persons";
 import PersonForm from "./components/PersonForm";
 import personsService from "./services/persons";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setNewFilter] = useState("");
+  const [message, setMessage] = useState("");
 
   const addName = (event) => {
     event.preventDefault();
@@ -26,20 +28,36 @@ const App = () => {
         const person = persons.find((person) => person.name === newName);
         const id = person.id;
         const changedPerson = { ...person, number: newNumber };
-        personsService.update(id, changedPerson).then((returnedPerson) => {
-          setPersons(
-            persons.map((person) =>
-              person.name !== newName ? person : returnedPerson
-            )
+        personsService
+          .update(id, changedPerson)
+          .then((returnedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.name !== newName ? person : returnedPerson
+              )
+            );
+          })
+          .then(
+            setMessage(`Updated ${person.name}'s number`),
+            setTimeout(() => {
+              setMessage(null);
+            }, 5000)
           );
-        });
       } else {
         // do nothing if result === false
       }
     } else {
-      personsService.create(nameObject).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson));
-      });
+      personsService
+        .create(nameObject)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
+        })
+        .then(
+          setMessage(`Added ${nameObject.name}`),
+          setTimeout(() => {
+            setMessage(null);
+          }, 5000)
+        );
     }
     setNewName("");
     setNewNumber("");
@@ -70,6 +88,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} />
       <Filter filter={filter} handleFilter={handleFilter} />
       <h3>Add a new number</h3>
       <PersonForm
