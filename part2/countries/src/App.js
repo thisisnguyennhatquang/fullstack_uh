@@ -15,7 +15,7 @@ const App = () => {
   });
 
   const handleChange = (event) => {
-    if (event.target.value === "" || event.target.value === null) {
+    if (event.target.value === "") {
       setFiltered([]);
     } else {
       setFiltered(
