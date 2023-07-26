@@ -23,7 +23,6 @@ const App = () => {
       )
     );
   };
-  console.log(filtered);
 
   return (
     <div>
