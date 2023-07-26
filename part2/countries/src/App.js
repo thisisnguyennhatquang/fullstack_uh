@@ -4,7 +4,7 @@ import Display from "./components/Display";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
-  const [filtered, setFiltered] = useState({});
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     axios
@@ -15,13 +15,17 @@ const App = () => {
   });
 
   const handleChange = (event) => {
-    setFiltered(
-      countries.filter((country) =>
-        country.name.common
-          .toLowerCase()
-          .includes(event.target.value.toLowerCase())
-      )
-    );
+    if (event.target.value === "" || event.target.value === null) {
+      setFiltered([]);
+    } else {
+      setFiltered(
+        countries.filter((country) =>
+          country.name.common
+            .toLowerCase()
+            .includes(event.target.value.toLowerCase())
+        )
+      );
+    }
   };
 
   return (
