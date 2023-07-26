@@ -3,7 +3,7 @@ import axios from "axios";
 import Display from "./components/Display";
 
 const App = () => {
-  const [countries, setCountries] = useState({});
+  const [countries, setCountries] = useState([]);
   const [filtered, setFiltered] = useState({});
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const App = () => {
       )
     );
   };
+  console.log(filtered);
 
   return (
     <div>
