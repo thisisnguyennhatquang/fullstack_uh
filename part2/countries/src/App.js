@@ -36,7 +36,7 @@ const App = () => {
         </form>
       </div>
       <div>
-        <Display countries={filtered} />
+        <Display countries={filtered} setCountries={setFiltered} />
       </div>
     </div>
   );
