@@ -1,24 +1,23 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-
-const api_key = process.env.REACT_APP_API_KEY;
+import weatherService from "../services/weather";
 
 const Data = ({ country }) => {
-  const baseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${country.capitalInfo.latlng[0]}&lon=${country.capitalInfo.latlng[1]}&appid=${api_key}`;
-
   const [weatherData, setWeatherData] = useState({});
 
   useEffect(() => {
-    axios.get(baseUrl).then((response) => {
-      setWeatherData(response.data);
-    });
+    weatherService
+      .getWeatherData(
+        country.capitalInfo.latlng[0],
+        country.capitalInfo.latlng[1]
+      )
+      .then((response) => {
+        setWeatherData(response.data);
+      });
   });
 
   if (Object.keys(weatherData).length === 0) {
-    console.log("Returning null");
     return null;
   } else {
-    console.log("Rendering country data");
     return (
       <div>
         <h1>{country.name.common}</h1>
