@@ -8,7 +8,7 @@ const Display = ({ countries, setCountries }) => {
       setCountries([country]);
     };
     let buttons = countries.map((country) => (
-      <li>
+      <li key={country.name.common}>
         {country.name.common}
         <button onClick={() => handleClick(country)}>show</button>
       </li>
