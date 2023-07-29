@@ -5,14 +5,10 @@ const Data = ({ country }) => {
   const [weatherData, setWeatherData] = useState({});
 
   useEffect(() => {
-    weatherService
-      .getWeatherData(
-        country.capitalInfo.latlng[0],
-        country.capitalInfo.latlng[1]
-      )
-      .then((response) => {
-        setWeatherData(response.data);
-      });
+    weatherService.getWeatherData(country.capital[0]).then((response) => {
+      const data = response;
+      setWeatherData(data);
+    });
   });
 
   if (Object.keys(weatherData).length === 0) {
@@ -21,7 +17,7 @@ const Data = ({ country }) => {
     return (
       <div>
         <h1>{country.name.common}</h1>
-        <p>Capital: {country.capital}</p>
+        <p>Capital: {country.capital[0]}</p>
         <p>Area: {country.area}</p>
         <p>
           <b>Languages:</b>
@@ -33,13 +29,13 @@ const Data = ({ country }) => {
         </ul>
         <img src={country.flags.png} alt={`${country.name.common} flag`} />
 
-        <h2> Weather in {country.capital}</h2>
+        {/* <h2> Weather in {country.capital[0]}</h2>
         <p>Temperature: {weatherData.main.temp - 273.15} Celsius</p>
         <img
-          src={`https://openweathermap.org/img/wn/${weatherData.weather.icon}@2x.png`}
-          alt={`${country.capital} weather icon`}
+          src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+          alt={`${country.capital[0]} weather icon`}
         />
-        <p>Wind {weatherData.wind.speed} m/s</p>
+        <p>Wind {weatherData.wind.speed} m/s</p> */}
       </div>
     );
   }

@@ -7,8 +7,8 @@ const App = () => {
   const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
-    countriesService.getCountries().then((response) => {
-      setCountries(response.data);
+    countriesService.getCountries().then((allCountries) => {
+      setCountries(allCountries);
     });
   });
 
