@@ -10,7 +10,7 @@ const App = () => {
     countriesService.getCountries().then((allCountries) => {
       setCountries(allCountries);
     });
-  });
+  }, []);
 
   const handleChange = (event) => {
     if (event.target.value === "") {

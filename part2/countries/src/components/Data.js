@@ -9,7 +9,7 @@ const Data = ({ country }) => {
       const data = response;
       setWeatherData(data);
     });
-  });
+  }, [country.capital]);
 
   if (Object.keys(weatherData).length === 0) {
     return null;
@@ -29,13 +29,13 @@ const Data = ({ country }) => {
         </ul>
         <img src={country.flags.png} alt={`${country.name.common} flag`} />
 
-        {/* <h2> Weather in {country.capital[0]}</h2>
+        <h2> Weather in {country.capital[0]}</h2>
         <p>Temperature: {weatherData.main.temp - 273.15} Celsius</p>
         <img
           src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
           alt={`${country.capital[0]} weather icon`}
         />
-        <p>Wind {weatherData.wind.speed} m/s</p> */}
+        <p>Wind {weatherData.wind.speed} m/s</p>
       </div>
     );
   }
